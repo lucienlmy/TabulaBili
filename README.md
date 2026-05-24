@@ -64,7 +64,7 @@ TabulaBili-Plus 利用 Chrome 扩展 Manifest V3 的 **`declarativeNetRequest` (
 
 ### 2. 本地安装 (开发者模式)
 
-1. 下载扩展：[GitHub](https://github.com/tjsky/TabulaBili/releases) | [蓝奏云](https://tjsky.lanzouq.com/iC8Ff3poxmud)
+1. 下载扩展：[GitHub](https://github.com/tjsky/TabulaBili/releases) | [蓝奏云](https://tjsky.lanzouq.com/iIIpx3q7q88j)
 2. 将`TabulaBili-Plus`文件夹解压到一个你喜欢的位置。
 3. 打开 Chrome 浏览器，在地址栏输入 `chrome://extensions/` 进入扩展管理页面。
 4. 开启页面右上角的 **“开发者模式”** (Developer mode)。
