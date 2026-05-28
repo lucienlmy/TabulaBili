@@ -7,48 +7,79 @@
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-
-  <header class="header">
-    <div class="logo-container">
-      <img src="icon48.png" alt="Logo" class="logo-img">
-    </div>
-    <div class="title-group">
-      <div class="title">TabulaBili-Plus</div>
-      <div class="subtitle">通过减少基于账号登录态和浏览历史的个性化推荐，让B站首页内容变得更泛化、更随机。</div>
-    </div>
-  </header>
-
-  <main class="main">
-    <div class="card">
-      <div class="control-row">
-        <div class="label-group">
-          <span class="label-main">纯净访客模式</span>
-          <span class="label-badge" id="modeBadge">OFF</span>
+  <div class="container">
+    <header class="header">
+      <div class="header-main">
+        <div class="logo-area">
+          <img src="icon32.png" alt="Logo" class="logo">
+          <h1 class="title">TabulaBili-Plus</h1>
         </div>
-        <label class="switch" title="切换推荐模式">
-          <input type="checkbox" id="modeSwitch">
-          <span class="slider"></span>
-        </label>
+        <span class="version">V1.2.0</span>
       </div>
+      <p class="subtitle">减少基于登录态与历史记录的推荐，让B站首页变得更随机泛化。</p>
+    </header>
 
-      <div class="status-panel">
-        <div class="status-desc" id="statusDesc">正在初始化规则状态...</div>
+    <main class="main">
+      <h2 class="section-title">扩展工作模式：</h2>
+      <div class="modes-group">
+        
+        <label class="mode-card" for="modePure">
+          <input type="radio" name="biliMode" id="modePure" value="pure">
+          <div class="radio-circle"></div>
+          <div class="mode-info">
+            <div class="mode-name">纯净模式 <span class="badge badge-pure">最高纯净度</span></div>
+            <div class="mode-desc">彻底阻止个人数据回传，享受最纯净内容。</div>
+          </div>
+        </label>
+
+        <label class="mode-card" for="modeRefresh">
+          <input type="radio" name="biliMode" id="modeRefresh" value="refresh">
+          <div class="radio-circle"></div>
+          <div class="mode-info">
+            <div class="mode-name">探索模式 <span class="badge badge-refresh">推荐首选</span></div>
+            <div class="mode-desc">将个性化内容作为探索起点，获取全网热门内容。</div>
+          </div>
+        </label>
+
+        <label class="mode-card" for="modeMixed">
+          <input type="radio" name="biliMode" id="modeMixed" value="mixed">
+          <div class="radio-circle"></div>
+          <div class="mode-info">
+            <div class="mode-name">混合模式 <span class="badge badge-mixed">舒适·破圈并存</span></div>
+            <div class="mode-desc">轮换请求个性化和热门内容！兼顾打破茧房和喜好推荐。</div>
+          </div>
+        </label>
+
+        <label class="mode-card" for="modeOrigin">
+          <input type="radio" name="biliMode" id="modeOrigin" value="origin">
+          <div class="radio-circle"></div>
+          <div class="mode-info">
+            <div class="mode-name">个性模式 <span class="badge badge-origin">原生算法</span></div>
+            <div class="mode-desc">恢复 B 站原汁原味的个性化算法推荐。</div>
+          </div>
+        </label>
+
       </div>
-    </div>
+    </main>
+
+    <section class="status-section">
+      <div class="status-bar">
+        <div class="status-left">
+          <span class="status-dot" id="statusDot"></span>
+          <span class="status-text" id="statusText">正在获取扩展运行状态...</span>
+        </div>
+        <button class="reset-fingerprint-btn" id="resetFingerprintBtn" title="重置设备指纹并强制刷新网页">
+          🔄 刷新设备指纹
+        </button>
+  </div>
+    </section>
 
     <footer class="footer">
-      <div class="status-wrapper">
-        <div class="status-indicator" id="indicator"></div>
-        <div class="footer-text" id="footerText">等待扩展响应...</div>
-      </div>
-      <div class="footer-links">
-        <a href="https://github.com/tjsky/TabulaBili/issues" target="_blank" class="footer-link" title="提交 Bug 或建议">🐛 反馈建议</a>
-        <a href="https://www.tjsky.net" target="_blank" class="footer-link" title="当前增强版 GitHub 仓库">💻 维护者主页</a>
-        <a href="https://wangdaodao.me/2026/tabulabili/" target="_blank" class="footer-link" title="原作者博客与创意来源">✨ 灵感来源</a>
-      </div>
+      <a href="https://github.com/tjsky/TabulaBili/issues" target="_blank" class="link-btn"  title="提交 Bug 或建议">反馈建议</a>
+      <a href="https://www.tjsky.net" target="_blank" class="link-btn" title="当前增强版 GitHub 仓库">维护者主页</a>
+      <a href="https://wangdaodao.me/2026/tabulabili/" target="_blank" class="link-btn" title="原作者博客与创意来源">灵感来源</a>
     </footer>
-  </main>
-
+  </div>
   <script src="popup.js"></script>
 </body>
 </html>

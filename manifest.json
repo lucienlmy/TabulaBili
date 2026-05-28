@@ -1,33 +1,47 @@
 {
   "manifest_version": 3,
   "name": "TabulaBili-Plus (初见哔哩增强版)",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "author": "去年夏天",
-  "description": "通过减少基于账号登录态和浏览历史的个性化推荐，让B站首页内容变得更泛化、更随机、更像公共热门流。",
+  "description": "通过精细化控制网络请求与首屏加载，提供纯净、刷新、混合等多维度的B站首页大盘推荐流体验，打破信息茧房。",
   "permissions": [
-    "declarativeNetRequestWithHostAccess",
-    "scripting",
-    "storage"
+    "storage",
+    "declarativeNetRequest"
   ],
   "host_permissions": [
     "*://api.bilibili.com/*",
     "*://www.bilibili.com/*"
   ],
-  "icons": {
-    "16": "icon16.png",
-    "32": "icon32.png",
-    "48": "icon48.png",
-    "128": "icon128.png"
+  "background": {
+    "service_worker": "background.js"
   },
+  "content_scripts": [
+    {
+      "matches": ["*://www.bilibili.com/*", "*://www.bilibili.com/?*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["*://www.bilibili.com/*", "*://www.bilibili.com/?*"],
+      "js": ["content-main.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    }
+  ],
   "action": {
     "default_popup": "popup.html",
-    "default_title": "TabulaBili-Plus 推荐设置",
     "default_icon": {
       "16": "icon16.png",
       "32": "icon32.png",
       "48": "icon48.png",
       "128": "icon128.png"
     }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
   },
   "declarative_net_request": {
     "rule_resources": [
@@ -37,15 +51,5 @@
         "path": "rules.json"
       }
     ]
-  },
-  "content_scripts": [
-    {
-      "matches": [
-        "*://www.bilibili.com/",
-        "*://www.bilibili.com/?*"
-      ],
-      "js": ["content.js"],
-      "run_at": "document_end"
-    }
-  ]
+  }
 }
