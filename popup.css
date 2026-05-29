@@ -1,13 +1,12 @@
 /* ==========================================
-   1. Design Tokens & Design System (浅色/深色自适应版)
+   1. Design Tokens & Design System 
    ========================================== */
 :root {
-  /* 薄荷绿核心品牌色定义 */
   --color-mint: #10b981;
   --color-mint-light: rgba(16, 185, 129, 0.04);
   --color-mint-border: rgba(16, 185, 129, 0.2);
   
-  /* ☀️ 默认浅色模式（Light Theme）调色盘 */
+  /* 浅色模式 */
   --color-bg-main: #ffffff;
   --color-bg-card: #f8fafc;
   --color-border: #f1f5f9; 
@@ -17,20 +16,20 @@
   --color-gray-border: #cbd5e1;
 }
 
-/* 🌙 自动跟随系统触发：深色模式（Dark Theme）高级极客蓝黑调色盘 */
+/* 深色模式 */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-mint: #34d399; /* 深色模式下微调亮薄荷绿，保证极佳的视觉对比度 */
-    --color-mint-light: rgba(52, 211, 153, 0.1); /* 提高黑夜状态下的高亮边界感知 */
+    --color-mint: #34d399; 
+    --color-mint-light: rgba(52, 211, 153, 0.1); 
     --color-mint-border: rgba(52, 211, 153, 0.35);
     
-    --color-bg-main: #0b0f19;       /* 原始经典蓝黑深邃底色 */
-    --color-bg-card: #151d30;       /* 稍微明亮一度的卡片浮空层（Slate-900级） */
-    --color-border: #1e293b;        /* 雅致的暗灰线条分割线 */
-    --color-text-main: #f8fafc;     /* 近纯白的文本主标题 */
-    --color-text-sub: #94a3b8;      /* 清爽的浅灰说明文案 */
-    --color-text-muted: #64748b;    /* 弱化状态文本与版本号文字 */
-    --color-gray-border: #475569;   /* 默认 Radio 框的暗灰边框线 */
+    --color-bg-main: #0b0f19;
+    --color-bg-card: #151d30;
+    --color-border: #1e293b;
+    --color-text-main: #f8fafc;
+    --color-text-sub: #94a3b8;
+    --color-text-muted: #64748b;
+    --color-gray-border: #475569;
   }
 }
 
@@ -42,7 +41,7 @@ body {
   color: var(--color-text-main);
   width: 360px; 
   box-sizing: border-box;
-  overflow: hidden; /* 强硬在全局掐死滚动条的出现，满足紧凑版免滚需求 */
+  overflow: hidden;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
@@ -53,7 +52,7 @@ body {
 }
 
 /* ==========================================
-   2. Header Section (信息头部)
+   2. Header Section
    ========================================== */
 .header {
   display: flex;
@@ -91,7 +90,7 @@ body {
   font-size: 10px;
   font-weight: 600;
   color: var(--color-text-muted);
-  background: var(--color-border); /* 💡 自适应变量：浅色灰底，深色蓝黑底 */
+  background: var(--color-border);
   padding: 1px 6px;
   border-radius: 10px;
 }
@@ -126,7 +125,7 @@ body {
 }
 
 /* ==========================================
-   4. Mode Cards Architecture (卡片容器高级渲染)
+   4. Mode Cards Architecture
    ========================================== */
 .mode-card {
   display: flex;
@@ -134,7 +133,7 @@ body {
   gap: 10px;
   padding: 10px 12px; 
   background-color: var(--color-bg-card);
-  border: 1px solid var(--color-border); /* 💡 全面瓦解写死的 #f1f5f9 线条 */
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -153,7 +152,7 @@ body {
   border-radius: 50%;
   margin-top: 2px;
   flex-shrink: 0;
-  background-color: var(--color-bg-main); /* 💡 自适应底层白/黑芯 */
+  background-color: var(--color-bg-main);
   transition: all 0.2s ease;
 }
 
@@ -190,7 +189,7 @@ body {
 .badge-origin { background: var(--color-border); color: var(--color-text-muted); }
 
 /* ==========================================
-   5. Interaction / Active States (微交互动态联动)
+   5. Interaction / Active States
    ========================================== */
 .mode-card:hover {
   border-color: var(--color-gray-border);
@@ -206,11 +205,11 @@ body {
 .mode-card input[type="radio"]:checked + .radio-circle {
   border-color: var(--color-mint);
   background-color: var(--color-mint);
-  box-shadow: inset 0 0 0 3px var(--color-bg-main); /* 💡 嵌套核心圆点完美自适应白/蓝黑 */
+  box-shadow: inset 0 0 0 3px var(--color-bg-main); 
 }
 
 /* ==========================================
-   6. Status Section & Footer (底层状态条及按钮)
+   6. Status Section & Footer
    ========================================== */
 .status-section {
   border-top: 1px solid var(--color-border);

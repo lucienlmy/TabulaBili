@@ -2,135 +2,270 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>生成商店截图 (640x400)</title>
+  <title>生成商店大尺寸截图 (1280x800)</title>
   <link rel="stylesheet" href="popup.css">
+  
   <style>
     /* ==========================================
-       彻底消灭黑边：让 html 和 body 恰好等于 640x400
+       1. 1280x800 巨幅画布环境初始化
        ========================================== */
     html, body {
-      width: 640px !important;
-      height: 400px !important;
+      width: 1280px !important;
+      height: 800px !important;
       margin: 0 !important;
       padding: 0 !important;
-      overflow: hidden !important; /* 彻底禁用滚动条 */
-      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-      font-family: system-ui, -apple-system, sans-serif;
+      overflow: hidden !important; /* 斩断一切多余的外部滚动条 */
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       box-sizing: border-box;
+      
+      /* ☀️ 默认浅色画布背景：清新高雅的薄荷绿渐变 */
+      background: linear-gradient(135deg, #f0fdf4 0%, #ccfbf1 50%, #e0f2fe 100%);
+    }
+
+    /* 🌙 自动跟随系统触发：深色模式下的科技感深海暗光背景 */
+    @media (prefers-color-scheme: dark) {
+      html, body {
+        background: linear-gradient(135deg, #040814 0%, #0b1329 50%, #111827 100%);
+      }
     }
     
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     
-    /* 核心画布铺满全屏 */
-    .canvas {
+    /* 核心布局框架：左右弹性大卡片错落分布 */
+    .promo-canvas {
       width: 100%;
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 36px;
+      padding: 0 90px; /* 大呼吸感内边距 */
       position: relative;
     }
     
-    /* 背景装饰 */
-    .circle {
+    /* ==========================================
+       2. 科技感光晕背景装饰物（提升高级感）
+       ========================================== */
+    .glow-orb {
       position: absolute;
       border-radius: 50%;
-      background: linear-gradient(135deg, rgba(16,185,129,0.15) 0%, rgba(52,211,153,0.25) 100%);
+      filter: blur(80px);
+      opacity: 0.6;
       pointer-events: none;
+      z-index: 1;
     }
-    .c1 { width: 350px; height: 350px; top: -120px; left: -80px; }
-    .c2 { width: 260px; height: 260px; bottom: -80px; right: -40px; }
-    
-    /* 左侧精练文案排版 */
-    .text-wrap {
-      z-index: 2;
-      width: 210px;
+    .orb-1 {
+      width: 500px;
+      height: 500px;
+      top: -150px;
+      left: -100px;
+      background: rgba(16, 185, 129, 0.2);
     }
-    .title {
-      font-size: 26px;
-      font-weight: 800;
-      color: #064e3b;
-      margin: 0 0 14px 0;
-      line-height: 1.25;
-      letter-spacing: -0.5px;
+    .orb-2 {
+      width: 400px;
+      height: 400px;
+      bottom: -100px;
+      right: 100px;
+      background: rgba(59, 130, 246, 0.15);
     }
-    .sub {
-      font-size: 13px;
-      color: #047857;
-      margin: 0;
-      line-height: 1.6;
-      font-weight: 500;
+    @media (prefers-color-scheme: dark) {
+      .orb-1 { background: rgba(52, 211, 153, 0.1); }
+      .orb-2 { background: rgba(139, 92, 246, 0.08); }
     }
     
-    /* 右侧 100% 还原的扩展面板容器 */
-    .mockup {
+    /* ==========================================
+       3. 左侧极简极客大文案排版
+       ========================================== */
+    .marketing-text {
       z-index: 2;
-      width: 320px;
-      height: 342px;
-      background: var(--bg-base); /* 继承自你的 popup.css */
-      border-radius: 14px;
-      box-shadow: 0 20px 40px rgba(6, 78, 59, 0.12), 0 4px 12px rgba(6, 78, 59, 0.06);
-      border: 1px solid rgba(16, 185, 129, 0.15);
+      width: 480px;
       display: flex;
       flex-direction: column;
+      gap: 24px;
+    }
+    
+    .brand-title {
+      font-size: 52px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      margin: 0;
+      line-height: 1.15;
+      /* 浅色下使用深绿，深色下自适应白 */
+      color: #064e3b;
+    }
+    @media (prefers-color-scheme: dark) {
+      .brand-title { color: #f8fafc; }
+    }
+
+    .brand-title span {
+      color: var(--color-mint); /* 高亮品牌色薄荷绿 */
+    }
+    
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.5;
+      color: #1e293b;
+    }
+    @media (prefers-color-scheme: dark) {
+      .feature-item { color: #cbd5e1; }
+    }
+
+    .feature-icon {
+      color: var(--color-mint);
+      font-size: 18px;
+      line-height: 1;
+      margin-top: 2px;
+    }
+    
+    /* ==========================================
+       4. 右侧 100% 像素级无缝还原的扩展面板浮空架
+       ========================================== */
+    .mockup-wrapper {
+      z-index: 2;
+      position: relative;
+    }
+
+    /* 外层高级阴影托盘 */
+    .mockup-shell {
+      /* 完美包裹我们 360px 宽度的真实 body 尺寸 */
+      width: 362px; 
+      background: var(--color-bg-main);
+      border-radius: 16px;
+      border: 1px solid var(--color-mint-border);
+      /* 极其逼真的超大发散式悬浮阴影 */
+      box-shadow: 0 30px 70px rgba(15, 23, 42, 0.15), 0 10px 30px rgba(15, 23, 42, 0.08);
       overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    @media (prefers-color-scheme: dark) {
+      .mockup-shell {
+        box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6), 0 10px 30px rgba(0, 0, 0, 0.4);
+        border-color: rgba(52, 211, 153, 0.15);
+      }
+    }
+
+    /* 利用嵌套，让真实扩展样式表的 .container 可以在此处完美缩放渲染（可选，此处保持1:1） */
+    .mockup-shell .container {
+      padding: 16px 18px; /* 略微拉开Mockup的视觉呼吸感 */
     }
   </style>
 </head>
 <body>
 
-  <div class="canvas">
-    <div class="circle c1"></div>
-    <div class="circle c2"></div>
+  <div class="promo-canvas">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
     
-    <div class="text-wrap">
-      <h1 class="title">TabulaBili-Plus<br>初见哔哩增强版</h1>
-      <p class="sub">告别推荐算法蚕食。<br>网络层清洗个性化痕迹，<br>一键唤醒纯净热门推荐流。</p>
+    <div class="marketing-text">
+      <h1 class="brand-title">TabulaBili<br><span>Plus</span> 增强版</h1>
+      <ul class="feature-list">
+        <li class="feature-item">
+          <span class="feature-icon">🛡️</span>
+          <div><b>底层无损清洗</b><br>在浏览器底层剥离Cookies，不留痕迹，不伤1080P/4K画质特权。</div>
+        </li>
+        <li class="feature-item">
+          <span class="feature-icon">⚡</span>
+          <div><b>Wbi 签名墙零感绕过</b><br>基于网页原生Fetch内核异步劫持，绝不破坏动态安全校验。</div>
+        </li>
+        <li class="feature-item">
+          <span class="feature-icon">🎛️</span>
+          <div><b>四大过滤等级自选</b><br>纯净模式、探索模式、混合模式、个性模式，破茧与舒适圈并存。</div>
+        </li>
+        <li class="feature-item">
+          <span class="feature-icon">🔄</span>
+          <div><b>多标签计数隔离</b><br>每个B站页面计数相互独立，切换模式时首页无感异步冲刷。</div>
+        </li>
+      </ul>
     </div>
     
-    <div class="mockup">
-      <header class="header">
-        <div class="logo-container">
-          <img src="icon48.png" alt="Logo" class="logo-img">
-        </div>
-        <div class="title-group">
-          <div class="title">TabulaBili-Plus</div>
-          <div class="subtitle">通过减少基于账号登录态和浏览历史的个性化推荐，让B站首页内容变得更泛化、更随机。</div>
-        </div>
-      </header>
-
-      <main class="main">
-        <div class="card">
-          <div class="control-row">
-            <div class="label-group">
-              <span class="label-main">纯净访客模式</span>
-              <span class="label-badge" style="color: #10b981; background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.2);">ACTIVE</span>
+    <div class="mockup-wrapper">
+      <div class="mockup-shell">
+        <div class="container">
+          <header class="header">
+            <div class="header-main">
+              <div class="logo-area">
+                <img src="icon32.png" alt="Logo" class="logo">
+                <h1 class="title">TabulaBili-Plus</h1>
+              </div>
+              <span class="version">V1.2.0</span>
             </div>
-            <label class="switch">
-              <input type="checkbox" checked disabled>
-              <span class="slider"></span>
-            </label>
-          </div>
+            <p class="subtitle">减少基于登录态与历史记录的推荐，让B站首页变得更随机泛化。</p>
+          </header>
 
-          <div class="status-panel">
-            <div class="status-desc" style="min-height: 60px;">已开启：自动剥离首页推荐 Cookie，享受纯净热门流，视频播放保持 1080P 高清体验。</div>
-          </div>
+          <main class="main">
+            <h2 class="section-title">扩展工作模式：</h2>
+            <div class="modes-group">
+              
+              <label class="mode-card">
+                <input type="radio" name="biliModeDemo" checked>
+                <div class="radio-circle"></div>
+                <div class="mode-info">
+                  <div class="mode-name">纯净模式 <span class="badge badge-pure">最高纯净度</span></div>
+                  <div class="mode-desc">彻底阻止个人数据回传，享受最纯净内容。</div>
+                </div>
+              </label>
+
+              <label class="mode-card">
+                <input type="radio" name="biliModeDemo">
+                <div class="radio-circle"></div>
+                <div class="mode-info">
+                  <div class="mode-name">探索模式 <span class="badge badge-refresh">推荐首选</span></div>
+                  <div class="mode-desc">将个性化内容作为探索起点，获取全网热门内容。</div>
+                </div>
+              </label>
+
+              <label class="mode-card">
+                <input type="radio" name="biliModeDemo">
+                <div class="radio-circle"></div>
+                <div class="mode-info">
+                  <div class="mode-name">混合模式 <span class="badge badge-mixed">舒适·破圈并存</span></div>
+                  <div class="mode-desc">轮换请求个性化和热门内容！兼顾打破茧房和喜好推荐。</div>
+                </div>
+              </label>
+
+              <label class="mode-card">
+                <input type="radio" name="biliModeDemo">
+                <div class="radio-circle"></div>
+                <div class="mode-info">
+                  <div class="mode-name">个性模式 <span class="badge badge-origin">原生算法</span></div>
+                  <div class="mode-desc">恢复 B 站原汁原味的个性化算法推荐。</div>
+                </div>
+              </label>
+
+            </div>
+          </main>
+
+          <section class="status-section">
+            <div class="status-bar">
+              <div class="status-left">
+                <span class="status-dot active"></span>
+                <span class="status-text" style="color: var(--color-mint);">纯净流运行中，已隔绝推荐画像</span>
+              </div>
+              <button class="reset-fingerprint-btn" style="display: none;">
+                🔄 刷新设备指纹
+              </button>
+            </div>
+          </section>
+
+          <footer class="footer">
+            <span class="link-btn">反馈建议</span>
+            <span class="link-btn">维护者主页</span>
+            <span class="link-btn">灵感来源</span>
+          </footer>
         </div>
-
-        <footer class="footer">
-          <div class="status-wrapper">
-            <div class="status-indicator active" style="background-color: #10b981;"></div>
-            <div class="footer-text" style="color: #10b981; font-weight: 600;">已注入规则，首页内容刷新中...</div>
-          </div>
-          <div class="footer-links">
-            <span class="footer-link">💻 项目开源</span>
-            <span class="footer-link">✨ 原作者博客</span>
-          </div>
-        </footer>
-      </main>
+      </div>
     </div>
   </div>
 
