@@ -132,17 +132,7 @@ TabulaBili-Plus/
 
 ---
 
-##  致谢
-
-感谢以下优秀开源项目与社区为本项目提供强有力的支持：
-
-- **[TabulaBili - 初见哔哩](https://wangdaodao.me/2026/tabulabili/) :** 上游项目，没有他的绝妙点子和开源项目，就没有现在的Plus项目
-- **[LINUX.DO 社区](https://linux.do/)**：感谢充满活力与分享精神的 LINUX.DO 社区
-- **[小众软件](https://meta.appinn.net/t/topic/85526/)**：感谢小青蛙的推荐和社区内大家的热情建议。
-
-同时感谢所有为项目提出宝贵意见、测试和支持本项目的开发者与使用者！
-
-## 📄 开源与许可声明
+## 📄 致谢 / 说明
 
 本项目采用 **MIT 开源许可证 (MIT License)**。
 
@@ -157,15 +147,33 @@ TabulaBili-Plus/
 
 ---
 
-## 🌐 联系与关注二开作者
+### 贡献者
+<a href="https://github.com/tjsky/TabulaBili/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=tjsky/TabulaBili" /></a>
+
+### Stars历史
+<a href="https://starchart.cc/tjsky/TabulaBili">
+  <img width="800" alt="Stargazers over time"  src="https://starchart.cc/tjsky/TabulaBili.svg?variant=adaptive" />
+</a>
+
+###  致谢
+
+感谢以下优秀开源项目与社区为本项目提供强有力的支持：
+
+- **[TabulaBili - 初见哔哩](https://wangdaodao.me/2026/tabulabili/) :** 上游项目，没有他的绝妙点子和开源项目，就没有现在的Plus项目
+- **[LINUX.DO 社区](https://linux.do/)**：感谢充满活力与分享精神的 LINUX.DO 社区
+- **[小众软件](https://meta.appinn.net/t/topic/85526/)**：感谢小青蛙的推荐和社区内大家的热情建议。
+
+同时感谢所有为项目提出宝贵意见、测试和支持本项目的开发者与使用者！
+
+
+###  联系与关注二开作者
+
 * **Blog**: [秋风于渭水](https://www.tjsky.net)
 * **项目介绍**: [TabulaBili-Plus - 初见哔哩增强版](https://www.tjsky.net/best-software/1587)
 * **GitHub**: [tjsky](https://github.com/tjsky)
-* 
 
----
-
-## 🌐 联系与关注原作者
+### 联系与关注原作者
 
 * **Blog**: [wangdaodao.me](https://wangdaodao.me)
 * **项目介绍**: [TabulaBili - 初见哔哩](https://wangdaodao.me/2026/tabulabili/)
