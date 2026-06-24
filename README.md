@@ -152,8 +152,13 @@ TabulaBili-Plus/
   <img src="https://contrib.rocks/image?repo=tjsky/TabulaBili" /></a>
 
 ### Stars历史
-<a href="https://starchart.cc/tjsky/TabulaBili">
-  <img width="800" alt="Stargazers over time"  src="https://starchart.cc/tjsky/TabulaBili.svg?variant=adaptive" />
+
+<a href="https://www.star-history.com/?repos=tjsky%2FTabulaBili&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=tjsky/TabulaBili&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=tjsky/TabulaBili&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=tjsky/TabulaBili&type=date&legend=top-left" />
+ </picture>
 </a>
 
 ###  致谢
